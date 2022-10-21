@@ -3,12 +3,25 @@
 
 TEST(Item, PriceTest) {
 	// Coke, 25 MX, discount = 10%
-	Item item ("Coke 500 mL", 25, 10);
-	ASSERT_EQ(22.5, item.get_price());
+	Item item ("Coke 500 mL", 25);
+	ASSERT_FLOAT_EQ(25, item.get_price());
 	item.update_price(28);
-	EXPECT_EQ(25.2, item.get_price());
+	ASSERT_FLOAT_EQ(28, item.get_price());
+	item.update_discount(10);
+	ASSERT_FLOAT_EQ(25.2, item.get_price());
 	item.update_discount(0);
-	EXPECT_EQ(28, item.get_price());
+	ASSERT_FLOAT_EQ(28, item.get_price());
+}
+
+TEST(Item, DiscountTest) {
+	// Ice cream chocolate, 30 MX, discount = 30%
+	Item item ("Ice cream chocolate", 30);
+	ASSERT_FLOAT_EQ(30, item.get_price());
+	item.update_discount(31);
+	ASSERT_FLOAT_EQ(0, item.get_discount());
+	item.update_discount(30);
+	ASSERT_FLOAT_EQ(30, item.get_discount());
+	ASSERT_FLOAT_EQ(21, item.get_price());
 }
 
 int main(int argc, char **argv) {
