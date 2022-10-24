@@ -31,3 +31,7 @@ void Item::update_discount(int new_discount) {
 float Item::calculate_discount() {
 	return (price * discount_percentage / 100);
 }
+
+bool Item::operator == (const Item& item) const {
+	return (name == item.name && price == item.price);
+}

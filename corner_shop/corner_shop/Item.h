@@ -18,6 +18,7 @@ public:
 	std::string get_name() {return name;}
 	float get_price() {return price;}
 	int get_discount() {return discount_percentage;}
+	bool operator == (const Item&) const;
 };
 
 #endif
